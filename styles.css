@@ -1,0 +1,190 @@
+/* Import Font */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+/* Color Palette */
+:root {
+  --dark-purple: #242038;
+  --indigo: #8d86c9;
+  --tea-green: #d3f9b5;
+  --linen: #f7ece1;
+  --white: #e0e0e0;
+}
+
+body {
+  background-color: var(--dark-purple);
+  font-family: "JetBrains Mono", monospace;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Let main grow to take available space */
+main {
+  flex: 1;
+}
+
+h1 {
+  color: var(--linen);
+  text-align: center;
+  margin-top: 4rem;
+}
+
+h2 {
+  color: var(--indigo);
+  text-align: center;
+}
+
+p {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  color: var(--white);
+  font-size: 1.5rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+a {
+  color: var(--tea-green);
+  text-decoration: none;
+}
+
+#back-btn {
+  display: inline-block;
+  margin: 2rem 1rem;
+  font-size: 1.5rem;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+#back-btn:hover {
+  color: var(--tea-green);
+  transform: translateX(-4px);
+}
+
+/* Projects Section */
+.project-card {
+  background-color: #1e1e2f;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  margin: 3rem auto;
+  max-width: 650px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+.project-img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-content {
+  padding: 2rem;
+}
+
+.project-content h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: var(--white);
+}
+
+.stack-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stack-icons svg {
+  color: var(--indigo);
+  width: 28px;
+  height: 28px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.stack-icons svg:hover {
+  opacity: 1;
+  color: var(--tea-green);
+}
+
+.project-link {
+  display: inline-block;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.project-link:hover {
+  color: var(--tea-green);
+}
+
+/* Writtings Section */
+#writings-section {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.writing-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.writing-links a {
+  font-size: 1.5rem;
+  color: var(--white);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.writing-links a:hover {
+  color: var(--tea-green);
+  transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--indigo);
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+footer .social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+footer .social-links a svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--white);
+  transition: fill 0.3s ease, transform 0.2s ease;
+}
+
+footer .social-links a:hover svg {
+  fill: var(--tea-green);
+  transform: scale(1.1);
+}
