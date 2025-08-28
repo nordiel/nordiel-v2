@@ -367,6 +367,12 @@ footer .social-links a:hover svg {
   color: #f4a261;
 }
 
+#rickroll {
+  color: var(--tea-green);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
 /* Fade-in animation */
 @keyframes fadeIn {
   from {
