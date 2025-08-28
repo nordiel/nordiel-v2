@@ -15,12 +15,7 @@ Welcome to my personal corner of the internet — a minimalist site where I shar
 ## 📁 Sections
 
 - **About Me** – A short intro about who I am
-- **Projects** – Showcasing what I’ve built (includes screenshots, stack icons, and repo links)
+- **Experience** - Timelie of my SWE Experience
 - **Writings** – Thoughts, reflections, and tech musings
+- **Projects** – Showcasing what I’ve built (includes screenshots, stack icons, and repo links)
 - **Footer** – Social links and credits
-
----
-
-## 📸 Preview
-
-![screenshot placeholder]()
