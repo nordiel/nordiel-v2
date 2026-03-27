@@ -1,21 +1,25 @@
-# 🌐 nordiel.com
+# nordiel.com
 
-Welcome to my personal corner of the internet — a minimalist site where I share my projects, writings, and thoughts.
+Personal website. Terminal-style, minimal, built with plain HTML/CSS/JS.
 
----
+## Stack
 
-## 🛠️ Built With the Basics
+- HTML5
+- CSS3 (custom properties, no frameworks)
+- Vanilla JS (theme toggle, localStorage persistence)
+- JetBrains Mono (Google Fonts)
 
-- **HTML5**
-- **CSS3**
-- ✨ And a love for clean design
+## Sections
 
----
+- **Intro** — short bio, email, resume
+- **Experience** — work history
+- **Projects** — selected work with stack icons and repo links
+- **Footer** — social links
 
-## 📁 Sections
+## Features
 
-- **About Me** – A short intro about who I am
-- **Experience** - Timelie of my SWE Experience
-- **Writings** – Thoughts, reflections, and tech musings
-- **Projects** – Showcasing what I’ve built (includes screenshots, stack icons, and repo links)
-- **Footer** – Social links and credits
+- Dark / light mode toggle with saved preference
+- Blinking terminal cursor
+- Inline SVG tech stack icons (Simple Icons)
+- Open Graph + Twitter card meta tags
+- Mobile responsive
