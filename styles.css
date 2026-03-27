@@ -3,7 +3,9 @@
 :root {
   --bg: #0f0f0f;
   --fg: #d4d4d4;
-  --accent: #4ade80;
+  /* --accent: #4ade80;
+  --accent: #fcaa67; */
+  --accent: #c084fc;
   --dim: #555555;
   --muted: #999999;
   --border: #1e1e1e;
