@@ -3,8 +3,6 @@
 :root {
   --bg: #0f0f0f;
   --fg: #d4d4d4;
-  /* --accent: #4ade80;
-  --accent: #fcaa67; */
   --accent: #c084fc;
   --dim: #555555;
   --muted: #999999;
@@ -14,7 +12,7 @@
 [data-theme="light"] {
   --bg: #f7f7f5;
   --fg: #1a1a1a;
-  --accent: #16a34a;
+  --accent: #c084fc;
   --dim: #888888;
   --muted: #555555;
   --border: #e0e0e0;
