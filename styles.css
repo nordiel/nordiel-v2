@@ -355,7 +355,7 @@ footer {
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0.5rem 0 0.4rem;
-  color: var(--fg);
+  color: var(--accent);
 }
 
 .post-header time {
