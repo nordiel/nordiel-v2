@@ -1,9 +1,16 @@
 "use strict";
 
+let obiWanTimeout;
+
 const playAudio = () => {
   let kenobiAudio = new Audio("assets/audio/kenobi-greeting.mp3");
   kenobiAudio.volume = 0.3;
   kenobiAudio.play();
+
+  const obiWan = document.getElementById("obi-wan");
+  obiWan.classList.add("show");
+  clearTimeout(obiWanTimeout);
+  obiWanTimeout = setTimeout(() => obiWan.classList.remove("show"), 2500);
 };
 
 const toggleTheme = () => {

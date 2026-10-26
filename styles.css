@@ -500,6 +500,22 @@ footer {
 }
 
 
+/* Obi-Wan popup */
+#obi-wan {
+  position: fixed;
+  bottom: 0;
+  right: 2rem;
+  width: 160px;
+  pointer-events: none;
+  transform: translateY(110%);
+  transition: transform 0.4s ease;
+  z-index: 100;
+}
+
+#obi-wan.show {
+  transform: translateY(0);
+}
+
 /* Mobile */
 @media (max-width: 600px) {
   body {
@@ -533,5 +549,10 @@ footer {
 
   .bio-row {
     display: block;
+  }
+
+  #obi-wan {
+    width: 110px;
+    right: 1rem;
   }
 }
