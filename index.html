@@ -26,6 +26,16 @@
         content="Software engineer from Puerto Rico. Building data-driven projects, AI tools, and things that make sense." />
     <meta name="twitter:image" content="" />
     <link rel="stylesheet" href="styles.css" />
+    <script>
+        // Boot sequence: once per session, unless the visitor prefers reduced motion.
+        // Runs inline so content is hidden before first paint; the timeout is a failsafe.
+        try {
+            if (!sessionStorage.getItem("booted") && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                document.documentElement.classList.add("booting");
+                setTimeout(() => document.documentElement.classList.remove("booting"), 4000);
+            }
+        } catch (e) {}
+    </script>
     <script src="script.js" defer></script>
 </head>
 
@@ -43,12 +53,18 @@
         </svg>
     </button>
 
+    <div class="window">
+    <div class="titlebar" aria-hidden="true">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span class="title">nordiel@dev: ~ — zsh</span>
+    </div>
+
     <main>
 
-        <div class="prompt"><span>nordiel</span>@dev:~$ <span id="typed-text"></span><span class="cursor"></span></div>
+        <div class="prompt"><span class="ps1"><span class="ps1-user">nordiel</span>@dev:<span class="ps1-path">~</span>$</span> <span id="typed-text"></span><span class="cursor"></span></div>
 
         <!-- Intro -->
-        <section id="intro">
+        <section id="intro" class="boot-hide">
             <div class="name-row">
                 <h1>Nordiel E. Martínez Cardona</h1>
                 <img src="/assets/images/pfp/nordiel-trail.jpeg" alt="Nordiel" class="avatar avatar--mobile" />
@@ -67,31 +83,22 @@
                 <img src="/assets/images/pfp/nordiel-trail.jpeg" alt="Nordiel" class="avatar avatar--desktop" />
             </div>
             <div class="bio-links">
-                <a href="mailto:nordielm@gmail.com">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <title>Email</title>
-                        <path
-                            d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
-                    </svg>
-                    nordielm@gmail.com
-                </a>
-                <a href="/assets/resume/Nordiel E. Martinez Cardona- Resume2026.pdf" target="_blank">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <title>Resume</title>
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z" />
-                    </svg>
-                    resume
-                </a>
+                <a class="tlink" href="mailto:nordielm@gmail.com">[nordielm@gmail.com]</a>
+                <a class="tlink" href="/assets/resume/Nordiel E. Martinez Cardona- Resume2026.pdf" target="_blank">[resume.pdf]</a>
             </div>
         </section>
 
         <!-- Experience -->
-        <section id="experience">
-            <h2>experience</h2>
+        <section id="experience" class="boot-hide">
+            <h2><span class="ps1" aria-hidden="true">$ </span>git log --graph career</h2>
             <div class="exp-item">
-                <span class="exp-role">Software Engineer Intern</span>
-                <span class="exp-company"> @ Aptima Inc</span>
-                <span class="exp-date">Aug 2023 – March 2026</span>
+                <div class="exp-head">
+                    <span class="git-star" aria-hidden="true">*</span>
+                    <span class="exp-date">Aug 2023 – Mar 2026</span>
+                </div>
+                <div class="exp-title">
+                    <span class="exp-role">Software Engineer Intern</span><span class="exp-company"> @ Aptima Inc</span>
+                </div>
                 <ul>
                     <li>Developed a Secure Windows installer with WiX Toolset for air-gapped environments</li>
                     <li>Data tagging & compliance guide for flight training protocols</li>
@@ -103,9 +110,13 @@
             </div>
 
             <div class="exp-item">
-                <span class="exp-role">Research Engineer</span>
-                <span class="exp-company"> @ Master Workforce UIPR</span>
-                <span class="exp-date">May 2023 – Jul 2023</span>
+                <div class="exp-head">
+                    <span class="git-star" aria-hidden="true">*</span>
+                    <span class="exp-date">May 2023 – Jul 2023</span>
+                </div>
+                <div class="exp-title">
+                    <span class="exp-role">Research Engineer</span><span class="exp-company"> @ Master Workforce UIPR</span>
+                </div>
                 <ul>
                     <li>Interactive phishing detection tool using Python, OpenAI's ChatGPT API, and Gradio</li>
                     <li>Prompt-based workflow with memory management for phishing analysis</li>
@@ -115,11 +126,12 @@
         </section>
 
         <!-- Projects -->
-        <section id="projects">
-            <h2>projects</h2>
+        <section id="projects" class="boot-hide">
+            <h2><span class="ps1" aria-hidden="true">$ </span>ls -l projects/</h2>
 
             <div class="proj-item">
                 <div class="proj-header">
+                    <span class="perm" aria-hidden="true">drwxr-xr-x</span>
                     <span class="proj-name">nordiel.com</span>
                     <a href="https://github.com/nordiel/nordiel-v2" target="_blank" class="proj-link">[github]</a>
                 </div>
@@ -154,6 +166,7 @@
 
             <div class="proj-item">
                 <div class="proj-header">
+                    <span class="perm" aria-hidden="true">drwxr-xr-x</span>
                     <span class="proj-name">easyCrypt</span>
                     <a href="https://github.com/nordiel/easyCrypt" target="_blank" class="proj-link">[github]</a>
                 </div>
@@ -177,6 +190,7 @@
 
             <div class="proj-item">
                 <div class="proj-header">
+                    <span class="perm" aria-hidden="true">drwxr-xr-x</span>
                     <span class="proj-name">Infotech Website</span>
                     <a href="https://github.com/InfoTech-UIPRB/Info-tech" target="_blank" class="proj-link">[github]</a>
                 </div>
@@ -206,6 +220,7 @@
 
             <div class="proj-item">
                 <div class="proj-header">
+                    <span class="perm" aria-hidden="true">drwxr-xr-x</span>
                     <span class="proj-name">Techo — Tech News Discord Bot</span>
                     <a href="https://github.com/nordiel/Techo-Bot" target="_blank" class="proj-link">[github]</a>
                 </div>
@@ -229,6 +244,7 @@
 
             <div class="proj-item">
                 <div class="proj-header">
+                    <span class="perm" aria-hidden="true">drwxr-xr-x</span>
                     <span class="proj-name">PIDSS — Phishing Identification & Decision Support System</span>
                     <a href="https://github.com/nordiel/PIDSS" target="_blank" class="proj-link">[github]</a>
                 </div>
@@ -258,12 +274,12 @@
         </section>
 
         <!-- Writing -->
-        <section id="writing">
-            <h2>writings</h2>
+        <section id="writing" class="boot-hide">
+            <h2><span class="ps1" aria-hidden="true">$ </span>ls -t writing/</h2>
             {% for post in collections.posts reversed %}
             <div class="writing-item">
+                <span class="writing-date">{{ post.date | date: "%b %d %Y" }}</span>
                 <a href="{{ post.url }}" class="writing-title">{{ post.data.title }}</a>
-                <span class="writing-date">{{ post.date | date: "%b %d, %Y" }}</span>
             </div>
             {% else %}
             <p class="muted">nothing here yet.</p>
@@ -271,8 +287,8 @@
         </section>
 
         <!-- Music -->
-        <section id="music">
-            <h2>music</h2>
+        <section id="music" class="boot-hide">
+            <h2><span class="ps1" aria-hidden="true">$ </span>spotify --playlists</h2>
 
             <div class="playlist-grid">
                 <iframe data-testid="embed-iframe" style="border-radius:12px"
@@ -294,35 +310,31 @@
             </div>
         </section>
 
+        <!-- Interactive shell -->
+        <section id="shell" class="boot-hide" aria-label="Interactive terminal">
+            <p class="shell-hint">type <kbd>help</kbd> to look around · press <kbd>/</kbd> to focus</p>
+            <div id="shell-output" aria-live="polite"></div>
+            <form id="shell-form" class="shell-line" autocomplete="off">
+                <label for="shell-input" class="ps1"><span class="ps1-user">nordiel</span>@dev:<span class="ps1-path">~</span>$</label>
+                <input id="shell-input" type="text" spellcheck="false" autocapitalize="off" aria-label="Terminal command" />
+            </form>
+        </section>
+
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://github.com/nordiel" target="_blank" aria-label="GitHub">
-                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <title>GitHub</title>
-                    <path
-                        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-                </svg>
-            </a>
-            <a href="https://www.linkedin.com/in/nordielmartinez/" target="_blank" aria-label="LinkedIn">
-                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <title>LinkedIn</title>
-                    <path
-                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                </svg>
-            </a>
-            <a href="https://x.com/nxrdiel" target="_blank" aria-label="X">
-                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <title>X</title>
-                    <path
-                        d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
-                </svg>
-            </a>
-        </div>
-        <p>© 2026 Nordiel · probably doing stuff right now. cool stuff. maybe.</p>
+    <!-- Footer: status bar -->
+    <footer class="statusbar boot-hide">
+        <span class="seg seg-mode">NORMAL</span>
+        <span class="seg">main ✓</span>
+        <span class="seg seg-quip">© 2026 Nordiel · probably doing stuff right now. cool stuff. maybe.</span>
+        <nav class="social-links" aria-label="Social">
+            <a class="tlink" href="https://github.com/nordiel" target="_blank">[github]</a>
+            <a class="tlink" href="https://www.linkedin.com/in/nordielmartinez/" target="_blank">[linkedin]</a>
+            <a class="tlink" href="https://x.com/nxrdiel" target="_blank">[x]</a>
+        </nav>
+        <span class="seg">PR 🇵🇷 <time id="clock"></time></span>
     </footer>
+    </div>
 
     <img id="obi-wan" src="/assets/images/obi-wan.png" alt="Obi-Wan Kenobi" aria-hidden="true" />
 
