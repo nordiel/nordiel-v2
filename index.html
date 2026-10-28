@@ -53,12 +53,13 @@
         </svg>
     </button>
 
-    <div class="window">
+    <div class="window window--split">
     <div class="titlebar" aria-hidden="true">
         <span class="dots"><i></i><i></i><i></i></span>
-        <span class="title">nordiel@dev: ~ — zsh</span>
+        <span class="title">nordiel@dev: ~ — tmux</span>
     </div>
 
+    <div class="panes">
     <main>
 
         <div class="prompt"><span class="ps1"><span class="ps1-user">nordiel</span>@dev:<span class="ps1-path">~</span>$</span> <span id="typed-text"></span><span class="cursor"></span></div>
@@ -342,6 +343,24 @@
             </div>
         </section>
 
+    </main>
+
+    <!-- Right pane: sysinfo + shell, side by side with the content on wide screens -->
+    <aside class="side-pane">
+        <section id="sysinfo" class="boot-hide" aria-label="About">
+            <p class="sysinfo-head"><span class="ps1-user">nordiel</span>@<span class="ps1-path">dev</span></p>
+            <p class="sysinfo-rule" aria-hidden="true">-----------</p>
+            <dl>
+                <dt>os</dt><dd>Puerto Rico 🇵🇷</dd>
+                <dt>role</dt><dd>SWE Intern @ Ethree</dd>
+                <dt>edu</dt><dd>CS B.S. · Inter Bayamón</dd>
+                <dt>lang</dt><dd>python · c# · ts/js · php · sql · html/css</dd>
+                <dt>stack</dt><dd>angular · pytorch · pandas · git · linux</dd>
+                <dt>shell</dt><dd>zsh — type <kbd>help</kbd></dd>
+            </dl>
+            <p class="swatches" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></p>
+        </section>
+
         <!-- Interactive shell -->
         <section id="shell" class="boot-hide" aria-label="Interactive terminal">
             <p class="shell-hint">type <kbd>help</kbd> to look around · press <kbd>/</kbd> to focus</p>
@@ -351,8 +370,8 @@
                 <input id="shell-input" type="text" spellcheck="false" autocapitalize="off" aria-label="Terminal command" />
             </form>
         </section>
-
-    </main>
+    </aside>
+    </div>
 
     <!-- Footer: status bar -->
     <footer class="statusbar boot-hide">

@@ -318,6 +318,8 @@ const toggleTheme = () => {
     navigated = false;
     run(input.value);
     input.value = "";
+    // In the split layout the output scrolls on its own; follow the newest line.
+    output.scrollTop = output.scrollHeight;
     // Keep the prompt in view, unless the command just scrolled somewhere else.
     if (!navigated) input.scrollIntoView({ block: "nearest" });
   });
@@ -346,6 +348,9 @@ const toggleTheme = () => {
     if (e.key !== "/" || t.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(t.tagName)) return;
     e.preventDefault();
     input.focus({ preventScroll: true });
+    // Already on screen (the sticky side pane): don't move the page.
+    const { top, bottom } = input.getBoundingClientRect();
+    if (top >= 0 && bottom <= innerHeight) return;
     input.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
   });
 })();

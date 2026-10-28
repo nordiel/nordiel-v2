@@ -15,6 +15,7 @@
   --yellow: #f9e2af;
   --red: #f38ba8;
   --peach: #fab387;
+  --dot: rgba(205, 214, 244, 0.07);
   --shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
 }
 
@@ -32,6 +33,7 @@
   --yellow: #df8e1d;
   --red: #d20f39;
   --peach: #fe640b;
+  --dot: rgba(76, 79, 105, 0.14);
   --shadow: 0 30px 80px rgba(76, 79, 105, 0.25);
 }
 
@@ -46,8 +48,10 @@
   color: var(--bg);
 }
 
+/* The page is a desktop: a faint dot grid behind the window */
 body {
-  background: var(--page);
+  background: var(--page) radial-gradient(var(--dot) 1px, transparent 1.5px) fixed;
+  background-size: 22px 22px;
   color: var(--fg);
   font-family: "JetBrains Mono", monospace;
   font-size: 20px;
@@ -85,7 +89,8 @@ kbd {
   border: 1px solid var(--border);
   border-radius: 10px;
   box-shadow: var(--shadow);
-  overflow: hidden;
+  /* clip, not hidden: hidden makes a scroll container and breaks the sticky side pane */
+  overflow: clip;
 }
 
 .titlebar {
@@ -468,6 +473,57 @@ h2 .ps1 {
   border-radius: 6px;
 }
 
+/* sysinfo: neofetch, only shown in the split layout */
+#sysinfo {
+  display: none;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.sysinfo-head {
+  font-weight: 700;
+}
+
+.sysinfo-rule {
+  color: var(--dim);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+#sysinfo dl {
+  display: grid;
+  grid-template-columns: 6ch 1fr;
+  column-gap: 1ch;
+}
+
+#sysinfo dt {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.swatches {
+  display: flex;
+  margin-top: 0.9rem;
+}
+
+.swatches i {
+  width: 1.6rem;
+  height: 0.9rem;
+}
+
+.swatches i:nth-child(1) { background: var(--red); }
+.swatches i:nth-child(2) { background: var(--peach); }
+.swatches i:nth-child(3) { background: var(--yellow); }
+.swatches i:nth-child(4) { background: var(--green); }
+.swatches i:nth-child(5) { background: var(--blue); }
+.swatches i:nth-child(6) { background: var(--accent); }
+.swatches i:nth-child(7) { background: var(--fg); }
+
+/* Narrow screens: the side pane just continues the page below main */
+.side-pane {
+  padding: 0 2.5rem 3rem;
+}
+
 /* Interactive shell */
 #shell {
   margin-top: 3.5rem;
@@ -719,12 +775,85 @@ h2 .ps1 {
   transform: translateY(0);
 }
 
+.window--split main {
+  padding-bottom: 0;
+}
+
+/* Wide screens: split the window like tmux. Content stays at its reading width on
+   the left; sysinfo and the shell sit in a sticky pane on the right. */
+@media (min-width: 1200px) {
+  .window--split {
+    max-width: 1320px;
+  }
+
+  .panes {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
+  }
+
+  /* The divider lives on main so it runs the full height, past the sticky pane */
+  .window--split main {
+    padding-bottom: 3rem;
+    border-right: 1px solid var(--border);
+    transition: border-color 0.15s ease;
+  }
+
+  /* tmux highlights the active pane's border */
+  .panes:has(.side-pane:focus-within) main {
+    border-right-color: var(--green);
+  }
+
+  /* Height leaves room for the body padding + titlebar above it (3.5rem + 2.3rem),
+     so the prompt is on screen before any scrolling */
+  .side-pane {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    height: calc(100vh - 5.8rem);
+    padding: 2.5rem 1.75rem 1.75rem;
+  }
+
+  #sysinfo {
+    display: block;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  /* The shell fills what's left; the prompt follows the output like a real
+     terminal, and once the pane is full the output scrolls instead */
+  #shell {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 0.78rem;
+  }
+
+  #shell-output {
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+}
+
 /* Mobile: drop the window chrome, keep the terminal */
 @media (max-width: 600px) {
   body {
     font-size: 15px;
     padding: 0;
     background: var(--bg);
+  }
+
+  .side-pane {
+    padding: 0 1.25rem 3rem;
   }
 
   .window {
